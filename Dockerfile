@@ -1,35 +1,19 @@
-# hadolint ignore=DL3006
-FROM node:20.12.2-alpine AS build
+FROM node:20-alpine
 
-ENV TZ=America/Sao_Paulo
-
-WORKDIR /usr/app
-
-COPY package.json package-lock.json ./
-
-RUN npm ci --omit=dev --silent
-
-COPY . .
-
-# hadolint ignore=DL3006
-FROM node:20.12.2-alpine
-
-ENV TZ=America/Sao_Paulo \
-    NODE_ENV=production \
-    PORT=3000
+RUN mkdir -p /usr/app/current
 
 WORKDIR /usr/app/current
 
-COPY --from=build /usr/app ./
+COPY package.json package-lock.json ./
 
-EXPOSE 3000
+RUN npm i -g cross-env nodemon jest@^27.5.1 pino-pretty --silent
+RUN npm ci --silent
 
-CMD ["node", "server.js"]
+COPY . .
 
-########################################################################
-# DEV NOTE                                                             #
-# No docker-compose.yml montamos volume .:/usr/app/current             #
-# – o código local sobrepõe e traz os devDependencies (nodemon, etc.)  #
-# – então em dev você pode rodar: `npm install` no host e              #
-#   `CMD ["nodemon", "server.js"]` se preferir                         #
-########################################################################
+EXPOSE 8080
+
+ENV NODE_ENV production
+ENV TZ="America/Sao_Paulo"
+
+CMD [ "nodemon", "server.js" ]

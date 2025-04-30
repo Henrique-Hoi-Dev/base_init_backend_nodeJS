@@ -1,48 +1,22 @@
-version: '3.9'
-
+version: '3.1'
 services:
-    base-ms-db:
-        image: mongo:7.0
-        container_name: base-ms-db
-        ports:
-            - '27017:27017'
+    ms-base-db:
+        image: mongo
+        ports: ['27017:27017']
+        networks: [ascs-net]
+        command: --logpath=/dev/null
         environment:
             TZ: America/Sao_Paulo
-            MONGO_INITDB_DATABASE: base
-        volumes:
-            - mongo-data:/data/db
-        command: --logpath=/dev/null
-        healthcheck:
-            test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/base --quiet
-            interval: 10s
-            timeout: 5s
-            retries: 5
-        networks:
-            - base-net
-        restart: unless-stopped
 
-    base-ms-app:
-        container_name: base-ms-app
-        build:
-            context: .
-            dockerfile: Dockerfile
+    ms-base-app:
+        image: ms-base-app
+        build: .
         command: ./start.sh
-        env_file:
-            - .env
-        ports:
-            - '3002:3000'
-            - '9229:9229'
-        volumes:
-            - .:/usr/app/current
-        depends_on:
-            base-ms-db:
-                condition: service_healthy
-        networks:
-            - base-net
-        restart: unless-stopped
-
-volumes:
-    mongo-data:
+        env_file: [.env]
+        volumes: ['.:/usr/app/current']
+        ports: ['3002:3000', '9229:9229']
+        networks: [ascs-net]
+        links: [ms-base-db]
 
 networks:
-    base-net:
+    ascs-net:
