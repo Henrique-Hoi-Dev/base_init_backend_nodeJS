@@ -1,14 +1,13 @@
-const Integra360UsersModel = require('./integra360_users_model');
-const Integra360UsersDivergentsModel = require('./integra360_users_divergent_model');
+const baseModel = require('./base_model');
 const BaseService = require('../../base/base_service');
-const HttpStatus = require('http-status');
 
 class UsersService extends BaseService {
     constructor() {
         super();
-        this._usersModel = Integra360UsersModel;
-        this._usersDivergentsModel = Integra360UsersDivergentsModel;
+        this._usersModel = baseModel;
     }
+
+    async baseFunciton() {}
 
     _updateHours(numOfHours, date = new Date()) {
         const dateCopy = new Date(date.getTime());
@@ -16,14 +15,6 @@ class UsersService extends BaseService {
         dateCopy.setHours(dateCopy.getHours() - numOfHours);
 
         return dateCopy;
-    }
-
-    _checkUserExists(user) {
-        if (!user) {
-            const err = new Error('USER_NOT_FOUND');
-            err.status = HttpStatus.UNPROCESSABLE_ENTITY;
-            throw err;
-        }
     }
 
     _handleMongoError(error) {

@@ -1,4 +1,4 @@
-const integra360Router = require('../api/v1/business/integra360/integra360_router');
+const baseRouter = require('../api/v1/business/base/base_router');
 const { Router } = require('express');
 
 const addRouters = (router) => {
@@ -7,7 +7,7 @@ const addRouters = (router) => {
         return res.status(200).send();
     });
 
-    router.use('/integra360', integra360Router(Router()));
+    router.use('/base', baseRouter(Router()));
 
     return router;
 };

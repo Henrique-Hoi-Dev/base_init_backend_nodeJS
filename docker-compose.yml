@@ -1,6 +1,6 @@
 version: '3.1'
 services:
-    ascs-ms-integra360-db:
+    ms-base-db:
         image: mongo
         ports: ['27017:27017']
         networks: [ascs-net]
@@ -8,15 +8,15 @@ services:
         environment:
             TZ: America/Sao_Paulo
 
-    ascs-ms-integra360-app:
-        image: ascs-ms-integra360-app
+    ms-base-app:
+        image: ms-base-app
         build: .
         command: ./start.sh
         env_file: [.env]
         volumes: ['.:/usr/app/current']
         ports: ['3002:3000', '9229:9229']
         networks: [ascs-net]
-        links: [ascs-ms-integra360-db]
+        links: [ms-base-db]
 
 networks:
     ascs-net:
