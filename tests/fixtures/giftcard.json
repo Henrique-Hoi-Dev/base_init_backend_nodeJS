@@ -1,0 +1,18 @@
+[
+    {
+        "vtexId": "20b1c902-c7e8-11ed-83ab-12aa1286e28b",
+        "userId": "75a20d6e-3b5d-4885-960d-ddc7e0f1d4f6",
+        "giftcardId": "75a20d6e-3b5d-4885-960d-ddc7e0f1d4f6_416",
+        "relationName": "ASICS Back Bonus",
+        "redemption": "KHVI-SJHC-PPEV-ZQSA",
+        "name": "valid test",
+        "email": "valid@giftcard.com'",
+        "gender": "Não informado",
+        "phone": "27996207394",
+        "cpf": "02146454601",
+        "firstAccess": false,
+        "dateOfBirthday": "1998-10-07T03:00:00.000Z",
+        "acceptedTerms": true,
+        "balance": 31.7
+    }
+]
