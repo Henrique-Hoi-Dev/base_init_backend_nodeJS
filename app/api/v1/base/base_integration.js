@@ -1,9 +1,7 @@
 const axios = require('axios');
 const logger = require('../../../utils/logger');
 
-const EXTERNAL_SERVICES = {
-
-};
+const EXTERNAL_SERVICES = {};
 
 class BaseIntegration {
     constructor(serviceName) {
