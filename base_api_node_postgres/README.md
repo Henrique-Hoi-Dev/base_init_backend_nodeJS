@@ -73,12 +73,14 @@ tests/                    # Jest test suites
 
 ## Getting Started
 ```bash
-# Clone the repo
-$ git clone https://github.com/<your‑org>/node‑base‑architecture.git
-$ cd node‑base‑architecture
+# Navigate to PostgreSQL template
+$ cd base_api_node_postgres
 
 # Configure environment variables
 $ cp env.sample .env.development
+
+# Install dependencies
+$ npm install
 
 # Start stack with Docker
 $ docker compose up -d --build
@@ -93,7 +95,22 @@ $ npm run db:seed
 $ npm run dev
 ```
 
-Navigate to `http://localhost:3000/docs` for the Swagger UI.
+The API will be available at `http://localhost:3000`.
+
+### Available Scripts
+```bash
+npm run dev          # Development with hot-reload
+npm run start        # Production
+npm run test         # Run all tests
+npm run test:unit    # Unit tests only
+npm run test:integration  # Integration tests only
+npm run coverage     # Test coverage
+npm run lint         # Lint code
+npm run lint:fix     # Fix linting issues
+npm run format       # Format code
+npm run format:check # Check code formatting
+npm run depcheck     # Check for unused dependencies
+```
 
 ### Database Commands
 ```bash
