@@ -1,21 +1,13 @@
 const baseModel = require('./base_model');
 const BaseService = require('../../base/base_service');
 
-class UsersService extends BaseService {
+class ExampleService extends BaseService {
     constructor() {
         super();
-        this._usersModel = baseModel();
+        this._model = baseModel();
     }
 
     async baseFunctionality() {}
-
-    _updateHours(numOfHours, date = new Date()) {
-        const dateCopy = new Date(date.getTime());
-
-        dateCopy.setHours(dateCopy.getHours() - numOfHours);
-
-        return dateCopy;
-    }
 
     _handleSequelizeError(error) {
         if (error.name === 'SequelizeValidationError') {
@@ -36,4 +28,4 @@ class UsersService extends BaseService {
     }
 }
 
-module.exports = UsersService;
+module.exports = ExampleService;

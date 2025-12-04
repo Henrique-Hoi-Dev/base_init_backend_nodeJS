@@ -1,22 +1,23 @@
 version: '3.1'
 services:
-    ms-base-db:
+    db:
         image: mongo
         ports: ['27017:27017']
-        networks: [ascs-net]
+        networks: [app-network]
         command: --logpath=/dev/null
         environment:
             TZ: America/Sao_Paulo
 
-    ms-base-app:
-        image: ms-base-app
+    app:
+        image: base-api-mongodb
         build: .
         command: ./start.sh
         env_file: [.env]
         volumes: ['.:/usr/app/current']
-        ports: ['3002:3000', '9229:9229']
-        networks: [ascs-net]
-        links: [ms-base-db]
+        ports: ['3000:3000', '9229:9229']
+        networks: [app-network]
+        depends_on:
+            - db
 
 networks:
-    ascs-net:
+    app-network:

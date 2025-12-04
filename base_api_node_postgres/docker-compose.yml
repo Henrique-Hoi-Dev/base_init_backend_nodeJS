@@ -1,9 +1,9 @@
 version: '3.1'
 services:
-    ms-base-db:
+    db:
         image: postgres:16-alpine
         ports: ['5432:5432']
-        networks: [ascs-net]
+        networks: [app-network]
         environment:
             POSTGRES_DB: ${DB_NAME:-base_db}
             POSTGRES_USER: ${DB_USER:-postgres}
@@ -12,18 +12,19 @@ services:
         volumes:
             - postgres_data:/var/lib/postgresql/data
 
-    ms-base-app:
-        image: ms-base-app
+    app:
+        image: base-api-postgres
         build: .
         command: ./start.sh
         env_file: [.env]
         volumes: ['.:/usr/app/current']
-        ports: ['3002:3000', '9229:9229']
-        networks: [ascs-net]
-        links: [ms-base-db]
+        ports: ['3000:3000', '9229:9229']
+        networks: [app-network]
+        depends_on:
+            - db
 
 networks:
-    ascs-net:
+    app-network:
 
 volumes:
     postgres_data:

@@ -1,11 +1,11 @@
 const BaseResourceController = require('../../base/base_resource_controller');
-const BaseService = require('./base_service');
+const ExampleService = require('./base_service');
 const HttpStatus = require('http-status');
 
-class UsersController extends BaseResourceController {
+class ExampleController extends BaseResourceController {
     constructor() {
         super();
-        this._baseService = new BaseService();
+        this._baseService = new ExampleService();
     }
 
     async baseFunction(req, res, next) {
@@ -18,4 +18,4 @@ class UsersController extends BaseResourceController {
     }
 }
 
-module.exports = UsersController;
+module.exports = ExampleController;

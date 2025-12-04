@@ -1,9 +1,9 @@
 const validator = require('../../../../utils/validator');
-const BaseController = require('./base_controller');
+const ExampleController = require('./base_controller');
 const validation = require('./base_validation');
 const { ensureAuthorization, verifyToken } = require('../../../../main/middleware');
 
-const baseController = new BaseController();
+const exampleController = new ExampleController();
 
 module.exports = (router) => {
     router
@@ -12,7 +12,7 @@ module.exports = (router) => {
             ensureAuthorization,
             verifyToken,
             validator(validation.validador),
-            baseController.baseFunction.bind(baseController)
+            exampleController.baseFunction.bind(exampleController)
         );
 
     return router;
