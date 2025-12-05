@@ -1,0 +1,17 @@
+{
+    "VALIDATION_ERROR": "Validation error",
+    "USER_NOT_FOUND": "User not found",
+    "INVALID_ROLE": "Role provided is invalid",
+    "INSUFFICIENT_PERMISSIONS": "User does not have the required permission",
+    "INVALID_USERS_CREDENTIALS": "Invalid user credentials",
+    "INVALID_USER_PASSWORD": "Wrong password",
+    "PASSWORDS_NOT_MATCHED": "Passwords not matched",
+    "CONFLICT_DUPLICATE_KEY_ERROR": "Conflict with duplicate keys",
+    "INVALID_EMAIL_TYPE": "Invalid email type",
+    "API_ENDPOINT_NOT_FOUND": "Api endpoint not found",
+    "USER_NOT_VERIFIED": "User not verified",
+    "INVALID_TOKEN": "A valid authorization is required",
+    "FORBIDDEN_RESOURCE": "User is not authorized to use this resource",
+    "INVALID_REFRESH_TOKEN": "A valid refresh token is required"
+}
+
